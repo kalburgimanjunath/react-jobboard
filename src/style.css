@@ -16,4 +16,6 @@ p {
 }
 .list {
   min-width: 33%;
+  width: 30%;
+  display: 'flex';
 }

@@ -20,10 +20,16 @@ export default function Lists() {
   });
   return (
     <div className="lists">
-      {lists &&
-        lists.map((item, index) => {
-          return <List key={item + index} title={item} items={listitems} />;
-        })}
+      {lists.length > 0 ? (
+        <div>
+          {lists &&
+            lists.map((item, index) => {
+              return <List key={item} title={item} items={listitems} />;
+            })}
+        </div>
+      ) : (
+        <div>Loading...</div>
+      )}
     </div>
   );
 }
