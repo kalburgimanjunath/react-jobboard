@@ -4,10 +4,10 @@ export default function Lists() {
   const lists = [
     'Naukri',
     'Monstor',
-    'Timesjobs',
-    'Timesjob',
-    'Shine',
-    'Linkedin',
+    // 'Timesjobs',
+    // 'Timesjob',
+    // 'Shine',
+    // 'Linkedin',
   ];
   const [listitems, setItems] = useState();
   useEffect(() => {
