@@ -52,7 +52,9 @@ export default function List({ title, items }) {
                     <div
                       dangerouslySetInnerHTML={{ __html: item.description }}
                     />
-                    <a href={item.url}>Apply</a>
+                    <a href={item.url} target="_new">
+                      Apply
+                    </a>
                   </CardBody>
                 </Card>
               </Collapse>
