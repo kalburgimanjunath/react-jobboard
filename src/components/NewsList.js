@@ -71,7 +71,8 @@ export default function NewsList({
                       </a>
                       <div>
                         <div>
-                          {item.company_name} posted on {item.created_at}
+                          At: {item.company_name} job posted on{' '}
+                          {item.created_at}
                         </div>
                         <div>
                           {item.job_types &&
@@ -80,9 +81,9 @@ export default function NewsList({
                             })}
                         </div>
                         <div>{item.location}</div>
-                        <div
+                        {/* <div
                           dangerouslySetInnerHTML={{ __html: item.description }}
-                        />
+                        /> */}
 
                         <div>
                           {item.tags &&

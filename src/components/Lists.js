@@ -55,10 +55,11 @@ export default function Lists() {
   //       setItems(response.data);
   //     });
   // });
+  // console.log(changeOption);
   return (
     <div className="lists">
       {lists1.length > 0 ? (
-        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', margin: 20 }}>
           {lists1 &&
             lists1.map((item, index) => {
               return (

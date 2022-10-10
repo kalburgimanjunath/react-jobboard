@@ -15,7 +15,14 @@ p {
   flex-wrap: wrap;
 }
 .list {
-  min-width: 33%;
-  width: 30%;
+  min-width: 50%;
+  width: calc(50% - 80px);
   display: 'flex';
+  padding: 20px;
+  background-color: indianred;
+  flex-wrap: wrap;
+  text-overflow: ellipsis;
+}
+.card {
+  margin-bottom: 20px;
 }

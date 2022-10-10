@@ -6,8 +6,12 @@ import {
   Card,
   Alert,
   CardHeader,
+  CardTitle,
+  CardImg,
+  CardText,
   ListGroup,
   ListGroupItem,
+  CardSubtitle,
 } from 'reactstrap';
 export default function List({ title, urls, onChangeOption, category, name }) {
   console.log(category);
@@ -26,7 +30,7 @@ export default function List({ title, urls, onChangeOption, category, name }) {
     fetch(urls)
       .then((res) => res.json())
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setItems(response.data);
       });
   });
@@ -52,47 +56,47 @@ export default function List({ title, urls, onChangeOption, category, name }) {
       </div>
 
       {listitems && listitems.length > 0 ? (
-        <div className="listgroup">
+        <div className="newsgroup">
           {name == 'News' ? (
-            <div>
-              <ListGroup>
-                {listitems.map((item) => {
-                  return (
-                    <>
-                      <ListGroupItem>
-                        {/* <div onClick={toggle}>{item.title}</div> */}
+            <>
+              {listitems.map((item) => {
+                return (
+                  <>
+                    {/* <div onClick={toggle}>{item.title}</div> */}
 
-                        <div>
-                          <a href={item.url} className="primary" target="_new">
-                            {item.title}
-                          </a>
-                          <div>Author:{item.author}</div>
-                          <div>
-                            Author:{item.author} posted on:{item.date}:
-                            {item.time}
-                          </div>
-                          <div>
-                            <img
-                              src={item.imageUrl ? item.imageUrl : ''}
-                              width={100}
-                              height={100}
-                            />
-                          </div>
-                          <div>{item.content}</div>
-                          <a href={item.readMoreUrl}>Readmore</a>
-                        </div>
-                      </ListGroupItem>
-                    </>
-                  );
-                })}
-              </ListGroup>
-            </div>
+                    <Card>
+                      <CardBody>
+                        <CardTitle tag="h5">{item.title}</CardTitle>
+                        <CardSubtitle className="mb-2 text-muted" tag="h6">
+                          Author:{item.author} posted on:{item.date}:{item.time}
+                        </CardSubtitle>
+                        <CardImg
+                          top
+                          width="100%"
+                          src={item.imageUrl ? item.imageUrl : ''}
+                          alt={item.title}
+                        />
+
+                        <CardText>{item.content}</CardText>
+                        <Button
+                          target="_new"
+                          href={item.readMoreUrl}
+                          title="Readmore"
+                        >
+                          Readmore
+                        </Button>
+                      </CardBody>
+                    </Card>
+                  </>
+                );
+              })}
+            </>
           ) : (
             <div>
               <ListGroup>
                 {listitems.map((item) => {
                   return (
-                    <>
+                    <div key={item.company_name} className="listgroup-item">
                       <ListGroupItem>
                         {/* <div onClick={toggle}>{item.title}</div> */}
 
@@ -111,11 +115,11 @@ export default function List({ title, urls, onChangeOption, category, name }) {
                                 })}
                             </div>
                             <div>{item.location}</div>
-                            <div
+                            {/* <div
                               dangerouslySetInnerHTML={{
                                 __html: item.description,
                               }}
-                            />
+                            /> */}
 
                             <div>
                               {item.tags &&
@@ -123,7 +127,7 @@ export default function List({ title, urls, onChangeOption, category, name }) {
                                   return <span>{subitem}</span>;
                                 })}
                             </div>
-                            <button type="button">Apply</button>
+                            <button type="button">Add to Apply</button>
                           </div>
                         </div>
                         {/* <a href={item.url} className="primary" target="_new">
@@ -148,7 +152,7 @@ export default function List({ title, urls, onChangeOption, category, name }) {
                       </Card>
                     </Collapse> */}
                       </ListGroupItem>
-                    </>
+                    </div>
                   );
                 })}
               </ListGroup>
@@ -156,7 +160,7 @@ export default function List({ title, urls, onChangeOption, category, name }) {
           )}
         </div>
       ) : (
-        <div className="listgroup">
+        <div className="newsgroup">
           <div>Loading</div>
         </div>
       )}
