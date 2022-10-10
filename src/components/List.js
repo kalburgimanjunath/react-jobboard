@@ -59,9 +59,9 @@ export default function List({ title, urls, onChangeOption, category, name }) {
         <div className="newsgroup">
           {name == 'News' ? (
             <>
-              {listitems.map((item) => {
+              {listitems.map((item, index) => {
                 return (
-                  <>
+                  <div key={item.title + index}>
                     {/* <div onClick={toggle}>{item.title}</div> */}
 
                     <Card>
@@ -87,53 +87,50 @@ export default function List({ title, urls, onChangeOption, category, name }) {
                         </Button>
                       </CardBody>
                     </Card>
-                  </>
+                  </div>
                 );
               })}
             </>
           ) : (
             <div>
-              <ListGroup>
-                {listitems.map((item) => {
-                  return (
-                    <div key={item.company_name} className="listgroup-item">
-                      <ListGroupItem>
-                        {/* <div onClick={toggle}>{item.title}</div> */}
-
-                        <div>
-                          <a href={item.url} className="primary" target="_new">
-                            {item.title}
-                          </a>
-                          <div>
-                            <div>
-                              {item.company_name} posted on {item.created_at}
-                            </div>
-                            <div>
-                              {item.job_types &&
-                                item.job_types.map((itemjobs) => {
-                                  return <span>{itemjobs}</span>;
-                                })}
-                            </div>
-                            <div>{item.location}</div>
-                            {/* <div
+              {listitems.map((item) => {
+                return (
+                  <div key={item.company_name} className="listgroup-item">
+                    <Card>
+                      <CardBody>
+                        <CardBody>
+                          <CardTitle tag="h5"> {item.title}</CardTitle>
+                          <CardSubtitle>
+                            {item.company_name} posted on {item.created_at}
+                          </CardSubtitle>
+                          <CardSubtitle className="mb-2 text-muted" tag="h6">
+                            {item.job_types &&
+                              item.job_types.map((itemjobs) => {
+                                return <span>{itemjobs}</span>;
+                              })}
+                          </CardSubtitle>
+                          <CardSubtitle>{item.location}</CardSubtitle>
+                          {/* <div
                               dangerouslySetInnerHTML={{
                                 __html: item.description,
                               }}
                             /> */}
 
-                            <div>
-                              {item.tags &&
-                                item.tags.map((subitem) => {
-                                  return <span>{subitem}</span>;
-                                })}
-                            </div>
-                            <button type="button">Add to Apply</button>
-                          </div>
-                        </div>
-                        {/* <a href={item.url} className="primary" target="_new">
+                          <CardSubtitle>
+                            {item.tags &&
+                              item.tags.map((subitem) => {
+                                return <span>{subitem}</span>;
+                              })}
+                          </CardSubtitle>
+                          <Button type="button" title="Add to Apply">
+                            Add to Apply
+                          </Button>
+                        </CardBody>
+                      </CardBody>
+                      {/* <a href={item.url} className="primary" target="_new">
                       Apply
                     </a> */}
-                        {/* <Collapse
+                      {/* <Collapse
                       isOpen={collapse}
                       onEntering={onEntering}
                       onEntered={onEntered}
@@ -151,11 +148,10 @@ export default function List({ title, urls, onChangeOption, category, name }) {
                         </CardBody>
                       </Card>
                     </Collapse> */}
-                      </ListGroupItem>
-                    </div>
-                  );
-                })}
-              </ListGroup>
+                    </Card>
+                  </div>
+                );
+              })}
             </div>
           )}
         </div>
